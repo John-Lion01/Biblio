@@ -9,8 +9,9 @@ from Bibliothèque import*
 def ma_bibliotheque () :
     from pickle import Unpickler
     import os
-    if os.path.exists("c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt") :
-        with open("c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt", "rb") as doc :
+    # fichier_stock = "c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt"
+    if os.path.exists(fichier_stock) :
+        with open(fichier_stock, "rb") as doc :
             m_ub = Unpickler(doc)
             donne = m_ub.load()
             # Numéro du dernier livre
@@ -26,21 +27,25 @@ biblio=ma_bibliotheque()
 # Enregistrement et récupération des donnés
 def G_save(bibliotheque_princ) :
     import os
-    if os.path.exists("C:/Users/HP/Gestionnaire_Biblio") :
-        if os.path.exists("C:/Users/HP/Gestionnaire_Biblio/Data") :
+    # Attention le dossier contenant la memoire est à définir
+    # doss_stock_1 = "C:/Users/HP/Gestionnaire_Biblio"
+    if os.path.exists(doss_stock_1) :
+        # doss_stock_2 = "C:/Users/HP/Gestionnaire_Biblio/Data"
+        if os.path.exists(doss_stock_2) :
+            # fichier_stock = "c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt"
             import pickle
             # liste contenant la bibliotheque principal,
             # le numéro du dernier livre,
             # le dernier matricule
             donne = [bibliotheque_princ, livre.num, abonner.mat]
-            with open("c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt", "wb") as doc :
+            with open(fichier_stock, "wb") as doc :
                 m_p = pickle.Pickler(doc)
                 m_p.dump(donne)
         else :
-            os.mkdir("c:/Users/Hp/Gestionnaire_Biblio/Data")
+            os.mkdir(doss_stock_2)
             return G_save()
     else :
-        os.mkdir("c:/Users/Hp/Gestionnaire_Biblio")
+        os.mkdir("doss_stock_1")
         return G_save()
 
 # Création de la fenêtre principale
