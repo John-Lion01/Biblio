@@ -11,8 +11,11 @@ from Bibliothèque import*
 BASE_DIR = os.path.dirname(__file__)
 SAVE_FILE = os.path.join(BASE_DIR, "Sauvegarge.txt")
 def ma_bibliotheque () :
-    if os.path.exists(SAVE_FILE) :
-        with open(SAVE_FILE, "rb") as doc :
+    from pickle import Unpickler
+    import os
+    # fichier_stock = "c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt"
+    if os.path.exists(fichier_stock) :
+        with open(fichier_stock, "rb") as doc :
             m_ub = Unpickler(doc)
             donne = m_ub.load()
             livre.num = donne[1]
@@ -25,13 +28,27 @@ biblio=ma_bibliotheque()
 
 # Enregistrement et récupération des donnés
 def G_save(bibliotheque_princ) :
-    # liste contenant la bibliotheque principal,
-    # le numéro du dernier livre,
-    # le dernier matricule
-    donne = [bibliotheque_princ, livre.num, abonner.mat]
-    with open(SAVE_FILE, "wb") as doc :
-        m_p = Pickler(doc)
-        m_p.dump(donne)
+    import os
+    # Attention le dossier contenant la memoire est à définir
+    # doss_stock_1 = "C:/Users/HP/Gestionnaire_Biblio"
+    if os.path.exists(doss_stock_1) :
+        # doss_stock_2 = "C:/Users/HP/Gestionnaire_Biblio/Data"
+        if os.path.exists(doss_stock_2) :
+            # fichier_stock = "c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt"
+            import pickle
+            # liste contenant la bibliotheque principal,
+            # le numéro du dernier livre,
+            # le dernier matricule
+            donne = [bibliotheque_princ, livre.num, abonner.mat]
+            with open(fichier_stock, "wb") as doc :
+                m_p = pickle.Pickler(doc)
+                m_p.dump(donne)
+        else :
+            os.mkdir(doss_stock_2)
+            return G_save()
+    else :
+        os.mkdir("doss_stock_1")
+        return G_save()
 
 # Création de la fenêtre principale
 root = tk.Tk()
