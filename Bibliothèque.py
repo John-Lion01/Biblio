@@ -61,11 +61,6 @@ class abonner :
             print(book)
     def __str__ (self) :
         return f"{self.val}, matricule : {self.matricule}, {self.emprunter()}"
-    def save_ab (cls) :
-        import pickle
-        with open("c:/Users/Hp/OneDrive/Bureau/GENIE-MECANIQUE/Programmation/PROJET/memoire/B_abonner.py", "wb") as doc :
-            m_p = pickle.Pickler(doc)
-            m_p.dump(cls.mat)
 
     
 #  On défini la bibliothèque 

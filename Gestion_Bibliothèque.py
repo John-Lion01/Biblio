@@ -2,20 +2,20 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+import os
+from pickle import Unpickler, Pickler
 
 # Le module de la bibliothèque
 from Bibliothèque import*
 # Définition/ Récupération de l'objet bibliothèque
+BASE_DIR = os.path.dirname(__file__)
+SAVE_FILE = os.path.join(BASE_DIR, "Sauvegarge.txt")
 def ma_bibliotheque () :
-    from pickle import Unpickler
-    import os
-    if os.path.exists("c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt") :
-        with open("c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt", "rb") as doc :
+    if os.path.exists(SAVE_FILE) :
+        with open(SAVE_FILE, "rb") as doc :
             m_ub = Unpickler(doc)
             donne = m_ub.load()
-            # Numéro du dernier livre
             livre.num = donne[1]
-            # Dernier matricule
             abonner.mat = donne[2] 
             return donne[0]
     else :
@@ -25,23 +25,13 @@ biblio=ma_bibliotheque()
 
 # Enregistrement et récupération des donnés
 def G_save(bibliotheque_princ) :
-    import os
-    if os.path.exists("C:/Users/HP/Gestionnaire_Biblio") :
-        if os.path.exists("C:/Users/HP/Gestionnaire_Biblio/Data") :
-            import pickle
-            # liste contenant la bibliotheque principal,
-            # le numéro du dernier livre,
-            # le dernier matricule
-            donne = [bibliotheque_princ, livre.num, abonner.mat]
-            with open("c:/Users/Hp/Gestionnaire_Biblio/Data/Memoire.txt", "wb") as doc :
-                m_p = pickle.Pickler(doc)
-                m_p.dump(donne)
-        else :
-            os.mkdir("c:/Users/Hp/Gestionnaire_Biblio/Data")
-            return G_save()
-    else :
-        os.mkdir("c:/Users/Hp/Gestionnaire_Biblio")
-        return G_save()
+    # liste contenant la bibliotheque principal,
+    # le numéro du dernier livre,
+    # le dernier matricule
+    donne = [bibliotheque_princ, livre.num, abonner.mat]
+    with open(SAVE_FILE, "wb") as doc :
+        m_p = Pickler(doc)
+        m_p.dump(donne)
 
 # Création de la fenêtre principale
 root = tk.Tk()

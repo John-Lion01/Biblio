@@ -1,41 +1,30 @@
 from Bibliothèque import*
 import os
-from pickle import Unpickler
+from pickle import Unpickler, Pickler
 
 # Numero des livres
 
 # Enregistrement et récupération des donnés
+BASE_DIR = os.path.dirname(__file__)
+SAVE_FILE = os.path.join(BASE_DIR, "Sauvegarge.txt")
 def save(bibliotheque_princ) :
-        import pickle
-        with open("c:/Users/Hp/OneDrive/Bureau/GENIE-MECANIQUE/Programmation/PROJET/memoire/biblio.py", "wb") as doc :
-            m_p = pickle.Pickler(doc)
-            m_p.dump(bibliotheque_princ)
-        # Le numéro du dernier livre 
-        with open("c:/Users/Hp/OneDrive/Bureau/GENIE-MECANIQUE/Programmation/PROJET/memoire/B_livre.py", "wb") as doc :
-            m_p = pickle.Pickler(doc)
-            m_p.dump(livre.num)
-        # Le numéro matricule du dernier abonné
-        with open("c:/Users/Hp/OneDrive/Bureau/GENIE-MECANIQUE/Programmation/PROJET/memoire/B_abonner.py", "wb") as doc :
-            m_p = pickle.Pickler(doc)
-            m_p.dump(abonner.mat)
+    # liste contenant la bibliotheque principal,
+    # le numéro du dernier livre,
+    # le dernier matricule
+    donne = [bibliotheque_princ, livre.num, abonner.mat]
+    with open(SAVE_FILE, "wb") as doc :
+        m_p = Pickler(doc)
+        m_p.dump(donne)
        
 # Définition/ Récupération de l'objet bibliothèque
 def ma_bibliotheque () :
-    if os.path.exists("c:/Users/Hp/OneDrive/Bureau/GENIE-MECANIQUE/Programmation/PROJET/memoire/biblio.py") :
-        with open("c:/Users/Hp/OneDrive/Bureau/GENIE-MECANIQUE/Programmation/PROJET/memoire/biblio.py", "rb") as doc :
+    if os.path.exists(SAVE_FILE) :
+        with open(SAVE_FILE, "rb") as doc :
             m_ub = Unpickler(doc)
             donne = m_ub.load()
-            # Numéro du dernier livre
-            with open("c:/Users/Hp/OneDrive/Bureau/GENIE-MECANIQUE/Programmation/PROJET/memoire/B_livre.py", "rb") as doc :
-                m_ul = Unpickler(doc)
-                num = m_ul.load() 
-            livre.num = num
-            # Dernier matricule
-            with open("c:/Users/Hp/OneDrive/Bureau/GENIE-MECANIQUE/Programmation/PROJET/memoire/B_abonner.py", "rb") as doc :
-                m_ua = Unpickler(doc)
-                mat = m_ua.load() 
-            abonner.mat = mat 
-            return donne
+            livre.num = donne[1]
+            abonner.mat = donne[2] 
+            return donne[0]
     else :
         return Bibliotheque("Principal")
 
