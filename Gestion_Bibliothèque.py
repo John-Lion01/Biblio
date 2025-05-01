@@ -82,6 +82,7 @@ def home() :
         widget.destroy()
     bienvenue = tk.Label(main_frame, text="Bienvenue dans la bibliothèque Principal\n Que pouvons nous faire pour vous ?", font=("Times New Roman", 18))
     bienvenue.pack(fill="both", expand=True, side="top")    
+
 # option1 = Afficher les livres
 def affichage_livre():
     global main_frame
@@ -764,39 +765,51 @@ for option in options :
     if option=="Quitter" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), bg="red", relief="flat", command=root.quit )
         btn.pack(fill="x", pady=5)
+        
     elif option ==  "Acueille" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), bg="green", relief="flat", command=home )
         btn.pack(fill="x", pady=5)
+        
     elif option=="Afficher les livres":
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=affichage_livre)
         btn.pack(fill="x", pady=5)
+        
     elif option=="Afficher les abonner" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=affichage_abonner)
         btn.pack(fill="x", pady=5)
+        
     elif option=="Abonnement" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=affichage_abonnement)
         btn.pack(fill="x", pady=5)
+        
     elif option=="Ajouter Livre" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=affichage_ajout)
         btn.pack(fill="x", pady=5)
+        
     elif option=="Emprunter un livre" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=affichage_emprunt)
         btn.pack(fill="x", pady=5)
+        
     elif option=="Retourner Livre" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=affichage_retourLivre)
         btn.pack(fill="x", pady=5)
+        
     elif option=="Supprimer Livre" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=suppression_livre)
         btn.pack(fill="x", pady=5)
+        
     elif option=="Supprimer un Abonner" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=suppression_abonne)
         btn.pack(fill="x", pady=5)
+        
     elif option=="Rechercher" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=Recherche)
         btn.pack(fill="x", pady=5)
+        
     elif option=="A propos" :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), relief="flat", command=propos)
         btn.pack(fill="x", pady=5)
+        
     else :
         btn=tk.Button(menu_frame, text=option, font=("Times New Roman", 14), background="yellow", relief="flat")
         btn.pack(fill="x", pady=5)  

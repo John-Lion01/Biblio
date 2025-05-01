@@ -11,3 +11,5 @@ main_Bibliothèque.py :
 Gestion_Bibliothèque.py :
    Application de la bibliothèque avec interface graphique tkinter
    
+Sauvegarde.txt : 
+  un fichier contenant les données enregistrer relatif au bibliothèque de nom : principal

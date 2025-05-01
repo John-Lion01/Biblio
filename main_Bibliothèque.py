@@ -136,6 +136,7 @@ def Menu():
             from time import sleep
             sleep(3)
             break
+        
         else :
             print("Option invalide ! \n")
    

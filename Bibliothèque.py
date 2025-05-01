@@ -39,7 +39,6 @@ class livre :
     def __str__ (self) :
         return (f"{self.titre} de {self.auteur}, publié en {self.annee}.")
 
- 
 #  On défini les abonné
 class abonner :
     mat = 1014
@@ -62,7 +61,6 @@ class abonner :
     def __str__ (self) :
         return f"{self.val}, matricule : {self.matricule}, {self.emprunter()}"
 
-    
 #  On défini la bibliothèque 
 class Bibliotheque :
     def __init__ (self, nom_bibliotheque) :
@@ -121,8 +119,7 @@ class Bibliotheque :
         self.Abonnement.append(nouveau) 
         print(f"Abonnement avec suxxès\n {nouveau}")
         return 0
-
-            
+    
     def Rechercher_livre (self, donnee) :
         result=[]
         for book in self.Livres :
